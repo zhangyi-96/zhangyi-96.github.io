@@ -1,0 +1,3775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.6.40">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+    <title>演练1.1</title>
+    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+    </style>
+
+    <style>
+      body.hypothesis-enabled #quarto-embed-header {
+        padding-right: 36px;
+      }
+
+      #quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+
+      #quarto-embed-header h6 {
+        font-size: 1.1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 400;
+      }
+
+      #quarto-embed-header a.quarto-back-link,
+      #quarto-embed-header a.quarto-download-embed {
+        font-size: 0.8em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+
+      .quarto-back-container {
+        padding-left: 0.5em;
+        display: flex;
+      }
+
+      .headroom {
+          will-change: transform;
+          transition: transform 200ms linear;
+      }
+
+      .headroom--pinned {
+          transform: translateY(0%);
+      }
+
+      .headroom--unpinned {
+          transform: translateY(-100%);
+      }      
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script>
+    window.document.addEventListener("DOMContentLoaded", function () {
+
+      var header = window.document.querySelector("#quarto-embed-header");
+      const titleBannerEl = window.document.querySelector("body > #title-block-header");
+      if (titleBannerEl) {
+        titleBannerEl.style.paddingTop = header.clientHeight + "px";
+      }
+      const contentEl = window.document.getElementById('quarto-content');
+      for (const child of contentEl.children) {
+        child.style.paddingTop = header.clientHeight + "px";
+        child.style.marginTop = "1em";
+      }
+
+      // Use the article root if the `back` call doesn't work. This isn't perfect
+      // but should typically work
+      window.quartoBackToArticle = () => {
+        var currentUrl = window.location.href;
+        window.history.back();
+        setTimeout(() => {
+            // if location was not changed in 100 ms, then there is no history back
+            if(currentUrl === window.location.href){              
+                // redirect to site root
+                window.location.href = '/';
+            }
+        }, 100);
+      }
+
+      const headroom = new window.Headroom(header, {
+        tolerance: 5,
+        onPin: function () {
+        },
+        onUnpin: function () {
+        },
+      });
+      headroom.init();
+    });
+    </script>
+
+    
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-10aef2bf6f97117324a21c1e2e27c6c1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+     <script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>  
+        <link rel="stylesheet" href="../styles/index.css">
+      </head>
+
+  <body class="floating nav-fixed quarto-notebook">
+    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
+      
+      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link"><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6><i class="bi bi-journal-code"></i> 演练1.1</h6>
+
+            <a href="../practice/practice1.ipynb" class="btn btn-primary quarto-download-embed" download="practice1.ipynb">Download Notebook</a>
+          </div>
+
+     <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Index</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../homework.html"> 
+<span class="menu-text">Homework</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../labs.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../practice.html"> 
+<span class="menu-text">Practice</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/zhangyi-96/Education-Management-Group-C-Zhang-Yi"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#演练1.2" id="toc-演练1.2" class="nav-link active" data-scroll-target="#演练1.2">演练1.2</a></li>
+  <li><a href="#演练1.3" id="toc-演练1.3" class="nav-link" data-scroll-target="#演练1.3">演练1.3</a></li>
+  <li><a href="#演练1.4" id="toc-演练1.4" class="nav-link" data-scroll-target="#演练1.4">演练1.4</a></li>
+  <li><a href="#演练1.5" id="toc-演练1.5" class="nav-link" data-scroll-target="#演练1.5">演练1.5</a></li>
+  <li><a href="#演练1.6" id="toc-演练1.6" class="nav-link" data-scroll-target="#演练1.6">演练1.6</a></li>
+  <li><a href="#演练1.7" id="toc-演练1.7" class="nav-link" data-scroll-target="#演练1.7">演练1.7</a></li>
+  <li><a href="#演练1.8" id="toc-演练1.8" class="nav-link" data-scroll-target="#演练1.8">演练1.8</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">      <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">演练1.1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>     <div id="cell-1" class="cell markdown">
+
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pingouin <span class="im">as</span> pg</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lets_plot <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>LetsPlot.setup_html(no_js<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">## You don't need to use these settings yourself,</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">## they are just here to make the charts look nicer!</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the plot style for prettier charts:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.style.use(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/aeturrell/core_python/main/plot_style.txt"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>d:\python_Path\lib\site-packages\outdated\utils.py:18: OutdatedPackageWarning: The package pingouin is out of date. Your version is 0.5.3, the latest is 0.5.5.
+Set the environment variable OUTDATED_IGNORE=1 to disable these warnings.
+  **kwargs
+Bad value in file 'https://raw.githubusercontent.com/aeturrell/core_python/main/plot_style.txt', line 24 ('legend.loc: "upper left"'): Key legend.loc: '"upper left"' is not a valid value for legend.loc; supported values are ['best', 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center']; remove quotes surrounding your string</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://data.giss.nasa.gov/gistemp/tabledata_v4/NH.Ts+dSST.csv"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    skiprows<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    na_values<span class="op">=</span><span class="st">"***"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div id="cell-4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Jan</th>
+<th data-quarto-table-cell-role="th">Feb</th>
+<th data-quarto-table-cell-role="th">Mar</th>
+<th data-quarto-table-cell-role="th">Apr</th>
+<th data-quarto-table-cell-role="th">May</th>
+<th data-quarto-table-cell-role="th">Jun</th>
+<th data-quarto-table-cell-role="th">Jul</th>
+<th data-quarto-table-cell-role="th">Aug</th>
+<th data-quarto-table-cell-role="th">Sep</th>
+<th data-quarto-table-cell-role="th">Oct</th>
+<th data-quarto-table-cell-role="th">Nov</th>
+<th data-quarto-table-cell-role="th">Dec</th>
+<th data-quarto-table-cell-role="th">J-D</th>
+<th data-quarto-table-cell-role="th">D-N</th>
+<th data-quarto-table-cell-role="th">DJF</th>
+<th data-quarto-table-cell-role="th">MAM</th>
+<th data-quarto-table-cell-role="th">JJA</th>
+<th data-quarto-table-cell-role="th">SON</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1880</td>
+<td>-0.39</td>
+<td>-0.53</td>
+<td>-0.23</td>
+<td>-0.30</td>
+<td>-0.05</td>
+<td>-0.18</td>
+<td>-0.22</td>
+<td>-0.25</td>
+<td>-0.24</td>
+<td>-0.30</td>
+<td>-0.43</td>
+<td>-0.42</td>
+<td>-0.30</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>-0.20</td>
+<td>-0.22</td>
+<td>-0.32</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1881</td>
+<td>-0.31</td>
+<td>-0.25</td>
+<td>-0.06</td>
+<td>-0.02</td>
+<td>0.05</td>
+<td>-0.34</td>
+<td>0.09</td>
+<td>-0.06</td>
+<td>-0.28</td>
+<td>-0.44</td>
+<td>-0.37</td>
+<td>-0.24</td>
+<td>-0.19</td>
+<td>-0.20</td>
+<td>-0.33</td>
+<td>-0.01</td>
+<td>-0.10</td>
+<td>-0.37</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1882</td>
+<td>0.25</td>
+<td>0.21</td>
+<td>0.02</td>
+<td>-0.30</td>
+<td>-0.23</td>
+<td>-0.29</td>
+<td>-0.28</td>
+<td>-0.15</td>
+<td>-0.25</td>
+<td>-0.52</td>
+<td>-0.33</td>
+<td>-0.68</td>
+<td>-0.21</td>
+<td>-0.17</td>
+<td>0.08</td>
+<td>-0.17</td>
+<td>-0.24</td>
+<td>-0.37</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1883</td>
+<td>-0.57</td>
+<td>-0.66</td>
+<td>-0.15</td>
+<td>-0.30</td>
+<td>-0.26</td>
+<td>-0.12</td>
+<td>-0.06</td>
+<td>-0.23</td>
+<td>-0.34</td>
+<td>-0.17</td>
+<td>-0.44</td>
+<td>-0.15</td>
+<td>-0.29</td>
+<td>-0.33</td>
+<td>-0.64</td>
+<td>-0.23</td>
+<td>-0.14</td>
+<td>-0.32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1884</td>
+<td>-0.16</td>
+<td>-0.11</td>
+<td>-0.64</td>
+<td>-0.59</td>
+<td>-0.36</td>
+<td>-0.41</td>
+<td>-0.41</td>
+<td>-0.52</td>
+<td>-0.45</td>
+<td>-0.44</td>
+<td>-0.58</td>
+<td>-0.47</td>
+<td>-0.43</td>
+<td>-0.40</td>
+<td>-0.14</td>
+<td>-0.53</td>
+<td>-0.45</td>
+<td>-0.49</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div id="cell-5" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 145 entries, 0 to 144
+Data columns (total 19 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   Year    145 non-null    int64  
+ 1   Jan     145 non-null    float64
+ 2   Feb     145 non-null    float64
+ 3   Mar     145 non-null    float64
+ 4   Apr     145 non-null    float64
+ 5   May     145 non-null    float64
+ 6   Jun     145 non-null    float64
+ 7   Jul     145 non-null    float64
+ 8   Aug     145 non-null    float64
+ 9   Sep     145 non-null    float64
+ 10  Oct     145 non-null    float64
+ 11  Nov     145 non-null    float64
+ 12  Dec     144 non-null    float64
+ 13  J-D     144 non-null    float64
+ 14  D-N     144 non-null    float64
+ 15  DJF     144 non-null    float64
+ 16  MAM     145 non-null    float64
+ 17  JJA     145 non-null    float64
+ 18  SON     145 non-null    float64
+dtypes: float64(18), int64(1)
+memory usage: 21.6 KB</code></pre>
+</div>
+</div></div>
+<div id="cell-6" class="cell markdown">
+<p>温度异常是指相对于某个参考时期的平均温度的偏离情况。它是一种衡量当前温度与长期平均温度差值的方式，重点在于体现温度的变化情况，而不是实际的温度数值。温度异常有助于突出长期的温度变化趋势。对于研究气候变化这样的长期过程，关注温度相对于历史平均值的变化更有意义。它可以过滤掉一些短期的、局部的温度波动，让研究人员更准确地把握地球气候系统是在变暖还是变冷这样的宏观趋势。</p>
+</div>
+<div id="cell-7" class="cell markdown">
+<section id="演练1.2" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.2">演练1.2</h2>
+</section>
+</div>
+<div id="cell-8" class="cell markdown">
+<p>绘制温度和时间折线图</p>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div id="cell-9" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(<span class="st">"Year"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Jan</th>
+<th data-quarto-table-cell-role="th">Feb</th>
+<th data-quarto-table-cell-role="th">Mar</th>
+<th data-quarto-table-cell-role="th">Apr</th>
+<th data-quarto-table-cell-role="th">May</th>
+<th data-quarto-table-cell-role="th">Jun</th>
+<th data-quarto-table-cell-role="th">Jul</th>
+<th data-quarto-table-cell-role="th">Aug</th>
+<th data-quarto-table-cell-role="th">Sep</th>
+<th data-quarto-table-cell-role="th">Oct</th>
+<th data-quarto-table-cell-role="th">Nov</th>
+<th data-quarto-table-cell-role="th">Dec</th>
+<th data-quarto-table-cell-role="th">J-D</th>
+<th data-quarto-table-cell-role="th">D-N</th>
+<th data-quarto-table-cell-role="th">DJF</th>
+<th data-quarto-table-cell-role="th">MAM</th>
+<th data-quarto-table-cell-role="th">JJA</th>
+<th data-quarto-table-cell-role="th">SON</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1880</td>
+<td>-0.39</td>
+<td>-0.53</td>
+<td>-0.23</td>
+<td>-0.30</td>
+<td>-0.05</td>
+<td>-0.18</td>
+<td>-0.22</td>
+<td>-0.25</td>
+<td>-0.24</td>
+<td>-0.30</td>
+<td>-0.43</td>
+<td>-0.42</td>
+<td>-0.30</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>-0.20</td>
+<td>-0.22</td>
+<td>-0.32</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1881</td>
+<td>-0.31</td>
+<td>-0.25</td>
+<td>-0.06</td>
+<td>-0.02</td>
+<td>0.05</td>
+<td>-0.34</td>
+<td>0.09</td>
+<td>-0.06</td>
+<td>-0.28</td>
+<td>-0.44</td>
+<td>-0.37</td>
+<td>-0.24</td>
+<td>-0.19</td>
+<td>-0.20</td>
+<td>-0.33</td>
+<td>-0.01</td>
+<td>-0.10</td>
+<td>-0.37</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1882</td>
+<td>0.25</td>
+<td>0.21</td>
+<td>0.02</td>
+<td>-0.30</td>
+<td>-0.23</td>
+<td>-0.29</td>
+<td>-0.28</td>
+<td>-0.15</td>
+<td>-0.25</td>
+<td>-0.52</td>
+<td>-0.33</td>
+<td>-0.68</td>
+<td>-0.21</td>
+<td>-0.17</td>
+<td>0.08</td>
+<td>-0.17</td>
+<td>-0.24</td>
+<td>-0.37</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1883</td>
+<td>-0.57</td>
+<td>-0.66</td>
+<td>-0.15</td>
+<td>-0.30</td>
+<td>-0.26</td>
+<td>-0.12</td>
+<td>-0.06</td>
+<td>-0.23</td>
+<td>-0.34</td>
+<td>-0.17</td>
+<td>-0.44</td>
+<td>-0.15</td>
+<td>-0.29</td>
+<td>-0.33</td>
+<td>-0.64</td>
+<td>-0.23</td>
+<td>-0.14</td>
+<td>-0.32</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1884</td>
+<td>-0.16</td>
+<td>-0.11</td>
+<td>-0.64</td>
+<td>-0.59</td>
+<td>-0.36</td>
+<td>-0.41</td>
+<td>-0.41</td>
+<td>-0.52</td>
+<td>-0.45</td>
+<td>-0.44</td>
+<td>-0.58</td>
+<td>-0.47</td>
+<td>-0.43</td>
+<td>-0.40</td>
+<td>-0.14</td>
+<td>-0.53</td>
+<td>-0.45</td>
+<td>-0.49</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div id="cell-10" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Jan</th>
+<th data-quarto-table-cell-role="th">Feb</th>
+<th data-quarto-table-cell-role="th">Mar</th>
+<th data-quarto-table-cell-role="th">Apr</th>
+<th data-quarto-table-cell-role="th">May</th>
+<th data-quarto-table-cell-role="th">Jun</th>
+<th data-quarto-table-cell-role="th">Jul</th>
+<th data-quarto-table-cell-role="th">Aug</th>
+<th data-quarto-table-cell-role="th">Sep</th>
+<th data-quarto-table-cell-role="th">Oct</th>
+<th data-quarto-table-cell-role="th">Nov</th>
+<th data-quarto-table-cell-role="th">Dec</th>
+<th data-quarto-table-cell-role="th">J-D</th>
+<th data-quarto-table-cell-role="th">D-N</th>
+<th data-quarto-table-cell-role="th">DJF</th>
+<th data-quarto-table-cell-role="th">MAM</th>
+<th data-quarto-table-cell-role="th">JJA</th>
+<th data-quarto-table-cell-role="th">SON</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2020</td>
+<td>1.59</td>
+<td>1.69</td>
+<td>1.66</td>
+<td>1.39</td>
+<td>1.27</td>
+<td>1.14</td>
+<td>1.10</td>
+<td>1.12</td>
+<td>1.19</td>
+<td>1.21</td>
+<td>1.58</td>
+<td>1.18</td>
+<td>1.34</td>
+<td>1.36</td>
+<td>1.56</td>
+<td>1.44</td>
+<td>1.12</td>
+<td>1.33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2021</td>
+<td>1.25</td>
+<td>0.96</td>
+<td>1.20</td>
+<td>1.13</td>
+<td>1.05</td>
+<td>1.21</td>
+<td>1.07</td>
+<td>1.02</td>
+<td>1.05</td>
+<td>1.29</td>
+<td>1.29</td>
+<td>1.17</td>
+<td>1.14</td>
+<td>1.14</td>
+<td>1.13</td>
+<td>1.13</td>
+<td>1.10</td>
+<td>1.21</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2022</td>
+<td>1.24</td>
+<td>1.16</td>
+<td>1.41</td>
+<td>1.09</td>
+<td>1.02</td>
+<td>1.13</td>
+<td>1.06</td>
+<td>1.17</td>
+<td>1.15</td>
+<td>1.31</td>
+<td>1.09</td>
+<td>1.06</td>
+<td>1.16</td>
+<td>1.17</td>
+<td>1.19</td>
+<td>1.17</td>
+<td>1.12</td>
+<td>1.19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2023</td>
+<td>1.29</td>
+<td>1.29</td>
+<td>1.64</td>
+<td>1.01</td>
+<td>1.13</td>
+<td>1.19</td>
+<td>1.44</td>
+<td>1.57</td>
+<td>1.67</td>
+<td>1.88</td>
+<td>1.97</td>
+<td>1.85</td>
+<td>1.50</td>
+<td>1.43</td>
+<td>1.22</td>
+<td>1.26</td>
+<td>1.40</td>
+<td>1.84</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2024</td>
+<td>1.67</td>
+<td>1.93</td>
+<td>1.77</td>
+<td>1.79</td>
+<td>1.44</td>
+<td>1.54</td>
+<td>1.42</td>
+<td>1.42</td>
+<td>1.58</td>
+<td>1.72</td>
+<td>1.90</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>1.67</td>
+<td>1.82</td>
+<td>1.67</td>
+<td>1.46</td>
+<td>1.73</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div id="cell-11" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Feb"</span>].plot(ax<span class="op">=</span>ax)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y label"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x label"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"title"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><img src="practice1_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div id="cell-12" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax.plot(df.index, df[<span class="st">"Jan"</span>])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y label"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"x label"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"title"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><img src="practice1_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div id="cell-13" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="st">"Jan"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"orange"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">"1951—1980 average"</span>, xy<span class="op">=</span>(<span class="fl">0.66</span>, <span class="op">-</span><span class="fl">0.2</span>), xycoords<span class="op">=</span>(<span class="st">"figure fraction"</span>, <span class="st">"data"</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>df[month].plot(ax<span class="op">=</span>ax)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Average temperature anomaly in </span><span class="sc">{</span>month<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss"> in the northern hemisphere (1880—</span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Annual temperature anomalies"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><img src="practice1_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div id="cell-14" class="cell markdown">
+<p>问题 2 至 4 (a)中的图表对温度和时间之间的关系可以发现，在1880年到1930年之间，每年一月份的气温相比于1951-1980年平均气温要低，后续的关系呈正相关关系，即随着时间的增长气温也随之增长。</p>
+</div>
+<div id="cell-15" class="cell markdown">
+<section id="演练1.3" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.3">演练1.3</h2>
+<p>制作年气温异常的折线图</p>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div id="cell-16" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> <span class="st">"J-D"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">"orange"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ax.annotate(<span class="st">"1951—1980 average"</span>, xy<span class="op">=</span>(<span class="fl">0.68</span>, <span class="op">-</span><span class="fl">0.2</span>), xycoords<span class="op">=</span>(<span class="st">"figure fraction"</span>, <span class="st">"data"</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df[month].plot(ax<span class="op">=</span>ax)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Average annual temperature anomaly in </span><span class="ch">\n</span><span class="ss"> in the northern hemisphere (1880—</span><span class="sc">{</span>df<span class="sc">.</span>index<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Annual temperature anomalies"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><img src="practice1_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div id="cell-17" class="cell markdown">
+<p>从上图的气温可以看出气温随着年份的增长而增长，尤其是近年来呈指数型增长，因此政府需要关注气候变化。</p>
+</div>
+<div id="cell-18" class="cell markdown">
+<section id="演练1.4" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.4">演练1.4</h2>
+<p>创建直方图和频率表</p>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div id="cell-19" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Period"</span>] <span class="op">=</span> pd.cut(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    df.index,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    bins<span class="op">=</span>[<span class="dv">1921</span>, <span class="dv">1950</span>, <span class="dv">1980</span>, <span class="dv">2010</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>[<span class="st">"1921—1950"</span>, <span class="st">"1951—1980"</span>, <span class="st">"1981—2010"</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    ordered<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div id="cell-20" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Period"</span>].tail(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Year
+2005    1981—2010
+2006    1981—2010
+2007    1981—2010
+2008    1981—2010
+2009    1981—2010
+2010    1981—2010
+2011          NaN
+2012          NaN
+2013          NaN
+2014          NaN
+2015          NaN
+2016          NaN
+2017          NaN
+2018          NaN
+2019          NaN
+2020          NaN
+2021          NaN
+2022          NaN
+2023          NaN
+2024          NaN
+Name: Period, dtype: category
+Categories (3, object): ['1921—1950' &lt; '1951—1980' &lt; '1981—2010']</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div id="cell-21" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>list_of_months <span class="op">=</span> [<span class="st">"Jun"</span>, <span class="st">"Jul"</span>, <span class="st">"Aug"</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df[list_of_months].stack().head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>Year     
+1880  Jun   -0.18
+      Jul   -0.22
+      Aug   -0.25
+1881  Jun   -0.34
+      Jul    0.09
+dtype: float64</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div id="cell-22" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, period <span class="kw">in</span> <span class="bu">zip</span>(axes, df[<span class="st">"Period"</span>].dropna().unique()):</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    df.loc[df[<span class="st">"Period"</span>] <span class="op">==</span> period, list_of_months].stack().hist(ax<span class="op">=</span>ax)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    ax.set_title(period)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Histogram of temperature anomalies"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].set_xlabel(<span class="st">"Summer temperature distribution"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><img src="practice1_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div id="cell-23" class="cell markdown">
+<section id="演练1.5" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.5">演练1.5</h2>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div id="cell-24" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>temp_all_months <span class="op">=</span> df.loc[(df.index <span class="op">&gt;=</span> <span class="dv">1951</span>) <span class="op">&amp;</span> (df.index <span class="op">&lt;=</span> <span class="dv">1980</span>), <span class="st">"Jan"</span>:<span class="st">"Dec"</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>temp_all_months <span class="op">=</span> (</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    temp_all_months.stack()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">"level_1"</span>: <span class="st">"month"</span>, <span class="dv">0</span>: <span class="st">"values"</span>})</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>temp_all_months</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1951</td>
+<td>Jan</td>
+<td>-0.36</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1951</td>
+<td>Feb</td>
+<td>-0.51</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1951</td>
+<td>Mar</td>
+<td>-0.18</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1951</td>
+<td>Apr</td>
+<td>0.06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1951</td>
+<td>May</td>
+<td>0.17</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">355</td>
+<td>1980</td>
+<td>Aug</td>
+<td>0.10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">356</td>
+<td>1980</td>
+<td>Sep</td>
+<td>0.10</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">357</td>
+<td>1980</td>
+<td>Oct</td>
+<td>0.12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">358</td>
+<td>1980</td>
+<td>Nov</td>
+<td>0.21</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">359</td>
+<td>1980</td>
+<td>Dec</td>
+<td>0.09</td>
+</tr>
+</tbody>
+</table>
+
+<p>360 rows × 3 columns</p>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div id="cell-25" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>quantiles <span class="op">=</span> [<span class="fl">0.3</span>, <span class="fl">0.7</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>list_of_percentiles <span class="op">=</span> np.quantile(temp_all_months[<span class="st">"values"</span>], q<span class="op">=</span>quantiles)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The cold threshold of </span><span class="sc">{</span>quantiles[<span class="dv">0</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">}</span><span class="ss">% is </span><span class="sc">{</span>list_of_percentiles[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The hot threshold of </span><span class="sc">{</span>quantiles[<span class="dv">1</span>]<span class="op">*</span><span class="dv">100</span><span class="sc">}</span><span class="ss">% is </span><span class="sc">{</span>list_of_percentiles[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The cold threshold of 30.0% is -0.1
+The hot threshold of 70.0% is 0.1</code></pre>
+</div>
+</div></div>
+<div id="cell-26" class="cell markdown">
+<p>根据上述的表格信息和结果输出，我们在这段时间内更频繁地经历更热的天气。</p>
+</div>
+<div id="cell-27" class="cell markdown">
+<section id="演练1.6" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.6">演练1.6</h2>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div id="cell-28" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a variable that has years 1981 to 2010, and months Jan to Dec (inclusive)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>temp_all_months <span class="op">=</span> df.loc[(df.index <span class="op">&gt;=</span> <span class="dv">1981</span>) <span class="op">&amp;</span> (df.index <span class="op">&lt;=</span> <span class="dv">2010</span>), <span class="st">"Jan"</span>:<span class="st">"Dec"</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Put all the data in stacked format and give the new columns sensible names</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>temp_all_months <span class="op">=</span> (</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    temp_all_months.stack()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">"level_1"</span>: <span class="st">"month"</span>, <span class="dv">0</span>: <span class="st">"values"</span>})</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the start of this data data:</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>temp_all_months.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">month</th>
+<th data-quarto-table-cell-role="th">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1981</td>
+<td>Jan</td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1981</td>
+<td>Feb</td>
+<td>0.62</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1981</td>
+<td>Mar</td>
+<td>0.68</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1981</td>
+<td>Apr</td>
+<td>0.39</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1981</td>
+<td>May</td>
+<td>0.18</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div id="cell-29" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>entries_less_than_q30 <span class="op">=</span> temp_all_months[<span class="st">"values"</span>] <span class="op">&lt;</span> list_of_percentiles[<span class="dv">0</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>proportion_under_q30 <span class="op">=</span> entries_less_than_q30.mean()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"The proportion under </span><span class="sc">{</span>list_of_percentiles[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>proportion_under_q30<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The proportion under -0.1 is 1.94%</code></pre>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div id="cell-30" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>proportion_over_q70 <span class="op">=</span> (temp_all_months[<span class="st">"values"</span>] <span class="op">&gt;</span> list_of_percentiles[<span class="dv">1</span>]).mean()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The proportion over </span><span class="sc">{</span>list_of_percentiles[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>proportion_over_q70<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The proportion over 0.1 is 84.72%</code></pre>
+</div>
+</div></div>
+<div id="cell-31" class="cell markdown">
+<section id="演练1.7" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.7">演练1.7</h2>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [20]:</pre></div><div id="cell-32" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>temp_all_months <span class="op">=</span> (</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    df.loc[:, <span class="st">"DJF"</span>:<span class="st">"SON"</span>]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    .stack()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    .rename(columns<span class="op">=</span>{<span class="st">"level_1"</span>: <span class="st">"Season"</span>, <span class="dv">0</span>: <span class="st">"Values"</span>})</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>temp_all_months[<span class="st">"Period"</span>] <span class="op">=</span> pd.cut(</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    temp_all_months[<span class="st">"Year"</span>],</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    bins<span class="op">=</span>[<span class="dv">1921</span>, <span class="dv">1950</span>, <span class="dv">1980</span>, <span class="dv">2010</span>],</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>[<span class="st">"1921—1950"</span>, <span class="st">"1951—1980"</span>, <span class="st">"1981—2010"</span>],</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    ordered<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at a cut of the data using `.iloc`, which provides position</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>temp_all_months.iloc[<span class="op">-</span><span class="dv">135</span>:<span class="op">-</span><span class="dv">125</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Season</th>
+<th data-quarto-table-cell-role="th">Values</th>
+<th data-quarto-table-cell-role="th">Period</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">444</td>
+<td>1991</td>
+<td>MAM</td>
+<td>0.45</td>
+<td>1981—2010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">445</td>
+<td>1991</td>
+<td>JJA</td>
+<td>0.42</td>
+<td>1981—2010</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">446</td>
+<td>1991</td>
+<td>SON</td>
+<td>0.32</td>
+<td>1981—2010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">447</td>
+<td>1992</td>
+<td>DJF</td>
+<td>0.43</td>
+<td>1981—2010</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">448</td>
+<td>1992</td>
+<td>MAM</td>
+<td>0.29</td>
+<td>1981—2010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">449</td>
+<td>1992</td>
+<td>JJA</td>
+<td>-0.04</td>
+<td>1981—2010</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">450</td>
+<td>1992</td>
+<td>SON</td>
+<td>-0.15</td>
+<td>1981—2010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">451</td>
+<td>1993</td>
+<td>DJF</td>
+<td>0.37</td>
+<td>1981—2010</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">452</td>
+<td>1993</td>
+<td>MAM</td>
+<td>0.31</td>
+<td>1981—2010</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">453</td>
+<td>1993</td>
+<td>JJA</td>
+<td>0.12</td>
+<td>1981—2010</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div id="cell-33" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>grp_mean_var <span class="op">=</span> temp_all_months.groupby([<span class="st">"Season"</span>, <span class="st">"Period"</span>])[<span class="st">"Values"</span>].agg(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    [np.mean, np.var]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>grp_mean_var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">var</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Season</th>
+<th data-quarto-table-cell-role="th">Period</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">DJF</td>
+<td data-quarto-table-cell-role="th">1921—1950</td>
+<td>-0.025862</td>
+<td>0.057489</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1951—1980</td>
+<td>-0.002000</td>
+<td>0.050548</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1981—2010</td>
+<td>0.523333</td>
+<td>0.078975</td>
+</tr>
+<tr class="even">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">JJA</td>
+<td data-quarto-table-cell-role="th">1921—1950</td>
+<td>-0.053448</td>
+<td>0.021423</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1951—1980</td>
+<td>0.000000</td>
+<td>0.014697</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1981—2010</td>
+<td>0.400000</td>
+<td>0.067524</td>
+</tr>
+<tr class="odd">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">MAM</td>
+<td data-quarto-table-cell-role="th">1921—1950</td>
+<td>-0.041034</td>
+<td>0.031302</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1951—1980</td>
+<td>0.000333</td>
+<td>0.025245</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1981—2010</td>
+<td>0.509333</td>
+<td>0.075737</td>
+</tr>
+<tr class="even">
+<td rowspan="3" data-quarto-table-cell-role="th" data-valign="top">SON</td>
+<td data-quarto-table-cell-role="th">1921—1950</td>
+<td>0.083448</td>
+<td>0.027473</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1951—1980</td>
+<td>-0.001333</td>
+<td>0.026205</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1981—2010</td>
+<td>0.429000</td>
+<td>0.111127</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [22]:</pre></div><div id="cell-34" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>min_year <span class="op">=</span> <span class="dv">1880</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    ggplot(temp_all_months, aes(x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Values"</span>, color<span class="op">=</span><span class="st">"Season"</span>))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_abline(slope<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">"black"</span>, size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="ss">f"Average annual temperature anomaly in </span><span class="ch">\n</span><span class="ss"> in the northern hemisphere (</span><span class="sc">{</span>min_year<span class="sc">}</span><span class="ss">—</span><span class="sc">{</span>temp_all_months[<span class="st">'Year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">)"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Annual temperature anomalies"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">"d"</span>)</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_text(</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>min_year, y<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="st">"1951—1980 average"</span>, hjust<span class="op">=</span><span class="st">"left"</span>, color<span class="op">=</span><span class="st">"black"</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="600.0" height="400.0">
+  <style type="text/css">
+  .plt-container {
+   font-family: Lucida Grande, sans-serif;
+   user-select: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+text {
+   text-rendering: optimizeLegibility;
+}
+#p26xFnq .plot-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 16.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .plot-subtitle {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .plot-caption {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .legend-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .legend-item {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .axis-title-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .axis-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dqRYqYk .axis-tooltip-text-x {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .axis-title-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .axis-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dqRYqYk .axis-tooltip-text-y {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .facet-strip-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p26xFnq .facet-strip-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dqRYqYk .tooltip-text {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dqRYqYk .tooltip-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+#dqRYqYk .tooltip-label {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+
+  </style>
+  <g id="p26xFnq">
+    <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+    <g transform="translate(29.5 42.5 ) ">
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <line x1="20.42799408177234" y1="305.0" x2="20.42799408177234" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="77.17242208669722" y1="305.0" x2="77.17242208669722" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="133.9168500916212" y1="305.0" x2="133.9168500916212" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="190.66127809654517" y1="305.0" x2="190.66127809654517" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="247.40570610147006" y1="305.0" x2="247.40570610147006" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="304.15013410639403" y1="305.0" x2="304.15013410639403" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="360.894562111318" y1="305.0" x2="360.894562111318" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="417.6389901162429" y1="305.0" x2="417.6389901162429" y2="-2.842170943040401E-14" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <line x1="0.0" y1="286.33925762818495" x2="449.4158697990006" y2="286.33925762818495" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="238.36819754639822" x2="449.4158697990006" y2="238.36819754639822" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="190.3971374646115" x2="449.4158697990006" y2="190.3971374646115" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="142.42607738282476" x2="449.4158697990006" y2="142.42607738282476" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="94.45501730103804" x2="449.4158697990006" y2="94.45501730103804" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="46.48395721925132" x2="449.4158697990006" y2="46.48395721925132" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) " clip-path="url(#cM5TOz7)" clip-bounds-jfx="[rect (0.0, 0.0), (449.4158697990005, 305.0)]">
+        <defs>
+          <clippath id="cM5TOz7">
+            <rect x="0.0" y="0.0" width="449.4158697990005" height="305.0">
+            </rect>
+          </clippath>
+        </defs>
+        <line x1="0.0" y1="190.3971374646115" x2="449.4158697990006" y2="190.39713746461146" stroke="rgb(0,0,0)" stroke-opacity="1.0" fill="none" stroke-width="2.2">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) " clip-path="url(#cJ3pF5Z)" clip-bounds-jfx="[rect (0.0, 0.0), (449.4158697990005, 305.0)]">
+        <defs>
+          <clippath id="cJ3pF5Z">
+            <rect x="0.0" y="0.0" width="449.4158697990005" height="305.0">
+            </rect>
+          </clippath>
+        </defs>
+        <g>
+          <path d="M20.42799408177234 209.58556149732618 L20.42799408177234 209.58556149732618 L23.265215482018903 191.35655866624722 L26.102436882265465 206.70729789241898 L28.939658282511118 212.4638251022334 L31.77687968275768 241.24646115130543 L34.614101083003334 232.6116703365838 L37.451322483249896 235.48993394149102 L40.28854388349646 224.93630072349794 L43.12576528374211 223.01745832022647 L45.962986683988674 187.51887385970429 L48.80020808423524 224.93630072349794 L51.63742948448089 211.50440390059765 L54.47465088472745 233.57109153821955 L57.311872284973106 223.9768795218622 L60.14909368521967 223.01745832022647 L62.98631508546623 222.05803711859073 L65.82353648571188 230.69282793331234 L68.66075788595845 200.95077068260457 L71.4979792862041 234.53051273985528 L74.33520068645066 223.9768795218622 L77.17242208669722 193.2754010695187 L80.00964348694288 181.76234664988988 L82.84686488718944 226.8551431267694 L85.684086287436 224.93630072349794 L88.52130768768166 235.48993394149102 L91.35852908792822 221.098615916955 L94.19575048817387 202.86961308587604 L97.03297188842043 231.65224913494808 L99.870193288667 237.4087763447625 L102.70741468891265 248.9218307643913 L105.54463608915921 229.7334067316766 L108.38185748940577 239.32761874803396 L111.21907888965143 218.2203523120478 L114.05630028989799 239.32761874803396 L116.89352169014364 220.13919471531926 L119.7307430903902 196.1536646744259 L122.56796449063677 225.89572192513367 L125.40518589088242 257.5566215791129 L128.24240729112898 232.6116703365838 L131.07962869137464 223.01745832022647 L133.9168500916212 203.82903428751177 L136.75407149186776 206.70729789241898 L139.59129289211342 203.82903428751177 L142.42851429235998 231.65224913494808 L145.26573569260654 199.99134948096884 L148.1029570928522 209.58556149732618 L150.94017849309876 189.43771626297575 L153.7773998933444 218.2203523120478 L156.61462129359097 212.4638251022334 L159.45184269383753 215.3420887071406 L162.2890640940832 197.11308587606163 L165.12628549432975 202.86961308587604 L167.9635068945754 197.11308587606163 L170.80072829482197 213.42324630386912 L173.63794969506853 204.7884554891475 L176.47517109531418 208.62614029569045 L179.31239249556074 195.19424347279016 L182.1496138958073 195.19424347279016 L184.98683529605296 168.3304498269896 L187.82405669629952 199.99134948096884 L190.66127809654517 175.04639823843974 L193.49849949679174 174.086977036804 L196.3357208970383 181.76234664988988 L199.17294229728395 173.12755583516827 L202.01016369753052 166.41160742371812 L204.84738509777617 175.04639823843974 L207.68460649802273 175.04639823843974 L210.5218278982693 171.2087134318968 L213.35904929851495 194.23482227115443 L216.1962706987615 189.43771626297575 L219.03349209900807 197.11308587606163 L221.87071349925372 188.47829506134002 L224.7079348995003 187.51887385970429 L227.54515629974594 161.61450141553945 L230.3823776999925 198.07250707769737 L233.21959910023907 216.30150990877632 L236.05682050048472 215.3420887071406 L238.89404190073128 198.07250707769737 L241.73126330097693 180.80292544825414 L244.5684847012235 171.2087134318968 L247.40570610147006 205.74787669078324 L250.2429275017157 176.9652406417112 L253.08014890196227 173.12755583516827 L255.91737030220884 194.23482227115443 L258.7545917024545 213.42324630386912 L261.59181310270105 205.74787669078324 L264.4290345029467 199.0319282793331 L267.26625590319327 175.04639823843974 L270.10347730343983 178.88408304498267 L272.9406987036855 192.31597986788296 L275.77792010393205 193.2754010695187 L278.6151415041786 209.58556149732618 L281.45236290442426 199.0319282793331 L284.2895843046708 171.2087134318968 L287.1268057049165 199.0319282793331 L289.96402710516304 185.60003145643282 L292.8012485054096 207.6667190940547 L295.63846990565526 166.41160742371812 L298.4756913059018 182.7217678515256 L301.3129127061475 189.43771626297575 L304.15013410639403 175.04639823843974 L306.9873555066406 150.10144699591063 L309.82457690688625 179.8435042466184 L312.6617983071328 173.12755583516827 L315.4990197073794 178.88408304498267 L318.336241107625 188.47829506134002 L321.1734625078716 171.2087134318968 L324.01068390811724 180.80292544825414 L326.8479053083638 147.22318339100343 L329.68512670861037 158.73623781063225 L332.522348108856 114.60286253538847 L335.3595695091026 147.22318339100343 L338.19679090934824 162.57392261717519 L341.0340123095948 160.65508021390372 L343.87123370984136 147.22318339100343 L346.708455110087 135.71012897137462 L349.5456765103336 163.53334381881092 L352.38289791058014 137.62897137464608 L355.2201193108258 118.4405473419314 L358.05734071107236 152.0202893991821 L360.894562111318 117.48112614029567 L363.7317835115646 125.15649575338153 L366.56900491181113 122.27823214847434 L369.4062263120568 127.075338156653 L372.24344771230335 123.23765335011008 L375.080669112549 105.96807172066686 L377.91789051279557 122.27823214847434 L380.75511191304213 104.04922931739539 L383.5923333132878 113.64344133375273 L386.42955471353434 128.03475935828874 L389.2667761137809 88.69849009122363 L392.10399751402656 114.60286253538847 L394.9412189142731 104.04922931739539 L397.7784403145188 117.48112614029567 L400.61566171476534 88.69849009122363 L403.4528831150119 81.9825416797735 L406.29010451525755 47.44337842088706 L409.1273259155041 74.30717206668761 L411.96454731574977 89.65791129285937 L414.80176871599633 68.5506448568732 L417.6389901162429 52.24048442906573 L420.47621151648855 81.9825416797735 L423.3134329167351 78.14485687323057 L426.1506543169817 69.51006605850894 L428.9878757172273 30.173796791443834 " fill="none" stroke-width="2.2" stroke="rgb(228,26,28)" stroke-opacity="1.0">
+          </path>
+        </g>
+        <g>
+          <path d="M20.42799408177234 211.50440390059765 L20.42799408177234 211.50440390059765 L23.265215482018903 199.99134948096884 L26.102436882265465 213.42324630386912 L28.939658282511118 203.82903428751177 L31.77687968275768 233.57109153821955 L34.614101083003334 228.77398553004087 L37.451322483249896 221.098615916955 L40.28854388349646 223.01745832022647 L43.12576528374211 198.07250707769737 L45.962986683988674 201.9101918842403 L48.80020808423524 216.30150990877632 L51.63742948448089 202.86961308587604 L54.47465088472745 215.3420887071406 L57.311872284973106 212.4638251022334 L60.14909368521967 219.17977351368353 L62.98631508546623 212.4638251022334 L65.82353648571188 192.31597986788296 L68.66075788595845 193.2754010695187 L71.4979792862041 202.86961308587604 L74.33520068645066 209.58556149732618 L77.17242208669722 199.99134948096884 L80.00964348694288 194.23482227115443 L82.84686488718944 223.01745832022647 L85.684086287436 236.44935514312675 L88.52130768768166 242.20588235294116 L91.35852908792822 213.42324630386912 L94.19575048817387 207.6667190940547 L97.03297188842043 232.6116703365838 L99.870193288667 229.7334067316766 L102.70741468891265 233.57109153821955 L105.54463608915921 230.69282793331234 L108.38185748940577 227.81456432840514 L111.21907888965143 236.44935514312675 L114.05630028989799 237.4087763447625 L116.89352169014364 217.26093111041206 L119.7307430903902 202.86961308587604 L122.56796449063677 228.77398553004087 L125.40518589088242 228.77398553004087 L128.24240729112898 227.81456432840514 L131.07962869137464 223.01745832022647 L133.9168500916212 216.30150990877632 L136.75407149186776 204.7884554891475 L139.59129289211342 215.3420887071406 L142.42851429235998 216.30150990877632 L145.26573569260654 212.4638251022334 L148.1029570928522 213.42324630386912 L150.94017849309876 204.7884554891475 L153.7773998933444 202.86961308587604 L156.61462129359097 209.58556149732618 L159.45184269383753 220.13919471531926 L162.2890640940832 194.23482227115443 L165.12628549432975 179.8435042466184 L167.9635068945754 201.9101918842403 L170.80072829482197 208.62614029569045 L173.63794969506853 195.19424347279016 L176.47517109531418 198.07250707769737 L179.31239249556074 185.60003145643282 L182.1496138958073 175.04639823843974 L184.98683529605296 190.3971374646115 L187.82405669629952 185.60003145643282 L190.66127809654517 177.92466184334694 L193.49849949679174 169.28987102862533 L196.3357208970383 189.43771626297575 L199.17294229728395 189.43771626297575 L202.01016369753052 175.04639823843974 L204.84738509777617 176.9652406417112 L207.68460649802273 196.1536646744259 L210.5218278982693 192.31597986788296 L213.35904929851495 187.51887385970429 L216.1962706987615 201.9101918842403 L219.03349209900807 204.7884554891475 L221.87071349925372 181.76234664988988 L224.7079348995003 178.88408304498267 L227.54515629974594 169.28987102862533 L230.3823776999925 195.19424347279016 L233.21959910023907 193.2754010695187 L236.05682050048472 212.4638251022334 L238.89404190073128 177.92466184334694 L241.73126330097693 183.68118905316135 L244.5684847012235 181.76234664988988 L247.40570610147006 177.92466184334694 L250.2429275017157 180.80292544825414 L253.08014890196227 190.3971374646115 L255.91737030220884 183.68118905316135 L258.7545917024545 204.7884554891475 L261.59181310270105 209.58556149732618 L264.4290345029467 180.80292544825414 L267.26625590319327 188.47829506134002 L270.10347730343983 197.11308587606163 L272.9406987036855 188.47829506134002 L275.77792010393205 193.2754010695187 L278.6151415041786 203.82903428751177 L281.45236290442426 198.07250707769737 L284.2895843046708 182.7217678515256 L287.1268057049165 203.82903428751177 L289.96402710516304 199.0319282793331 L292.8012485054096 211.50440390059765 L295.63846990565526 179.8435042466184 L298.4756913059018 201.9101918842403 L301.3129127061475 184.64061025479708 L304.15013410639403 176.9652406417112 L306.9873555066406 173.12755583516827 L309.82457690688625 190.3971374646115 L312.6617983071328 172.16813463353253 L315.4990197073794 182.7217678515256 L318.336241107625 193.2754010695187 L321.1734625078716 185.60003145643282 L324.01068390811724 168.3304498269896 L326.8479053083638 155.85797420572504 L329.68512670861037 164.49276502044665 L332.522348108856 152.0202893991821 L335.3595695091026 150.10144699591063 L338.19679090934824 194.23482227115443 L341.0340123095948 178.88408304498267 L343.87123370984136 155.85797420572504 L346.708455110087 145.30434098773196 L349.5456765103336 167.37102862535386 L352.38289791058014 146.2637621893677 L355.2201193108258 120.35938974520288 L358.05734071107236 157.7768166089965 L360.894562111318 148.18260459263917 L363.7317835115646 131.87244416483168 L366.56900491181113 129.9536017615602 L369.4062263120568 124.19707455174581 L372.24344771230335 141.46665618118902 L375.080669112549 119.39996854356714 L377.91789051279557 120.35938974520288 L380.75511191304213 126.11591695501727 L383.5923333132878 132.8318653664674 L386.42955471353434 124.19707455174581 L389.2667761137809 107.88691412393833 L392.10399751402656 120.35938974520288 L394.9412189142731 108.84633532557406 L397.7784403145188 119.39996854356714 L400.61566171476534 110.76517772884553 L403.4528831150119 94.45501730103804 L406.29010451525755 84.8608052846807 L409.1273259155041 96.37385970430951 L411.96454731574977 104.04922931739539 L414.80176871599633 83.90138408304495 L417.6389901162429 82.94196288140921 L420.47621151648855 84.8608052846807 L423.3134329167351 82.94196288140921 L426.1506543169817 56.07816923560867 L428.9878757172273 50.32164202579426 " fill="none" stroke-width="2.2" stroke="rgb(55,126,184)" stroke-opacity="1.0">
+          </path>
+        </g>
+        <g>
+          <path d="M20.42799408177234 221.098615916955 L20.42799408177234 221.098615916955 L23.265215482018903 225.89572192513367 L26.102436882265465 225.89572192513367 L28.939658282511118 221.098615916955 L31.77687968275768 237.4087763447625 L34.614101083003334 226.8551431267694 L37.451322483249896 223.9768795218622 L40.28854388349646 222.05803711859073 L43.12576528374211 198.07250707769737 L45.962986683988674 233.57109153821955 L48.80020808423524 224.93630072349794 L51.63742948448089 218.2203523120478 L54.47465088472745 232.6116703365838 L57.311872284973106 220.13919471531926 L60.14909368521967 224.93630072349794 L62.98631508546623 199.99134948096884 L65.82353648571188 199.99134948096884 L68.66075788595845 205.74787669078324 L71.4979792862041 223.9768795218622 L74.33520068645066 178.88408304498267 L77.17242208669722 188.47829506134002 L80.00964348694288 215.3420887071406 L82.84686488718944 226.8551431267694 L85.684086287436 233.57109153821955 L88.52130768768166 225.89572192513367 L91.35852908792822 202.86961308587604 L94.19575048817387 215.3420887071406 L97.03297188842043 226.8551431267694 L99.870193288667 235.48993394149102 L102.70741468891265 217.26093111041206 L105.54463608915921 234.53051273985528 L108.38185748940577 215.3420887071406 L111.21907888965143 259.4754639823844 L114.05630028989799 221.098615916955 L116.89352169014364 207.6667190940547 L119.7307430903902 206.70729789241898 L122.56796449063677 232.6116703365838 L125.40518589088242 230.69282793331234 L128.24240729112898 206.70729789241898 L131.07962869137464 214.38266750550486 L133.9168500916212 228.77398553004087 L136.75407149186776 199.0319282793331 L139.59129289211342 217.26093111041206 L142.42851429235998 188.47829506134002 L145.26573569260654 200.95077068260457 L148.1029570928522 187.51887385970429 L150.94017849309876 183.68118905316135 L153.7773998933444 177.92466184334694 L156.61462129359097 196.1536646744259 L159.45184269383753 198.07250707769737 L162.2890640940832 176.00581944007547 L165.12628549432975 164.49276502044665 L167.9635068945754 191.35655866624722 L170.80072829482197 211.50440390059765 L173.63794969506853 181.76234664988988 L176.47517109531418 197.11308587606163 L179.31239249556074 180.80292544825414 L182.1496138958073 162.57392261717519 L184.98683529605296 165.4521862220824 L187.82405669629952 176.00581944007547 L190.66127809654517 163.53334381881092 L193.49849949679174 164.49276502044665 L196.3357208970383 169.28987102862533 L199.17294229728395 159.69565901226798 L202.01016369753052 158.73623781063225 L204.84738509777617 173.12755583516827 L207.68460649802273 188.47829506134002 L210.5218278982693 172.16813463353253 L213.35904929851495 187.51887385970429 L216.1962706987615 189.43771626297575 L219.03349209900807 205.74787669078324 L221.87071349925372 168.3304498269896 L224.7079348995003 193.2754010695187 L227.54515629974594 173.12755583516827 L230.3823776999925 172.16813463353253 L233.21959910023907 198.07250707769737 L236.05682050048472 218.2203523120478 L238.89404190073128 180.80292544825414 L241.73126330097693 184.64061025479708 L244.5684847012235 186.55945265806855 L247.40570610147006 187.51887385970429 L250.2429275017157 190.3971374646115 L253.08014890196227 183.68118905316135 L255.91737030220884 158.73623781063225 L258.7545917024545 216.30150990877632 L261.59181310270105 196.1536646744259 L264.4290345029467 191.35655866624722 L267.26625590319327 180.80292544825414 L270.10347730343983 199.0319282793331 L272.9406987036855 183.68118905316135 L275.77792010393205 198.07250707769737 L278.6151415041786 200.95077068260457 L281.45236290442426 206.70729789241898 L284.2895843046708 199.0319282793331 L287.1268057049165 209.58556149732618 L289.96402710516304 207.6667190940547 L292.8012485054096 221.098615916955 L295.63846990565526 177.92466184334694 L298.4756913059018 185.60003145643282 L301.3129127061475 169.28987102862533 L304.15013410639403 176.9652406417112 L306.9873555066406 167.37102862535386 L309.82457690688625 192.31597986788296 L312.6617983071328 162.57392261717519 L315.4990197073794 192.31597986788296 L318.336241107625 187.51887385970429 L321.1734625078716 186.55945265806855 L324.01068390811724 167.37102862535386 L326.8479053083638 173.12755583516827 L329.68512670861037 171.2087134318968 L332.522348108856 147.22318339100343 L335.3595695091026 159.69565901226798 L338.19679090934824 204.7884554891475 L341.0340123095948 195.19424347279016 L343.87123370984136 146.2637621893677 L346.708455110087 139.54781377791755 L349.5456765103336 176.9652406417112 L352.38289791058014 134.75070776973888 L355.2201193108258 137.62897137464608 L358.05734071107236 148.18260459263917 L360.894562111318 163.53334381881092 L363.7317835115646 122.27823214847434 L366.56900491181113 128.03475935828874 L369.4062263120568 112.68402013211698 L372.24344771230335 117.48112614029567 L375.080669112549 97.33328090594524 L377.91789051279557 103.08980811575965 L380.75511191304213 116.52170493865994 L383.5923333132878 113.64344133375273 L386.42955471353434 110.76517772884553 L389.2667761137809 101.17096571248818 L392.10399751402656 116.52170493865994 L394.9412189142731 102.13038691412392 L397.7784403145188 105.00865051903112 L400.61566171476534 107.88691412393833 L403.4528831150119 67.59122365523747 L406.29010451525755 81.9825416797735 L409.1273259155041 85.82022648631643 L411.96454731574977 88.69849009122363 L414.80176871599633 72.38832966341614 L417.6389901162429 62.7941176470588 L420.47621151648855 74.30717206668761 L423.3134329167351 76.2260144699591 L426.1506543169817 13.863636363636346 L428.9878757172273 24.417269581629427 " fill="none" stroke-width="2.2" stroke="rgb(77,175,74)" stroke-opacity="1.0">
+          </path>
+        </g>
+        <g>
+          <path d="M23.265215482018903 222.05803711859073 L23.265215482018903 222.05803711859073 L26.102436882265465 182.7217678515256 L28.939658282511118 251.8000943692985 L31.77687968275768 203.82903428751177 L34.614101083003334 251.8000943692985 L37.451322483249896 245.08414595784836 L40.28854388349646 254.6783579742057 L43.12576528374211 239.32761874803396 L45.962986683988674 198.07250707769737 L48.80020808423524 247.00298836111983 L51.63742948448089 241.24646115130543 L54.47465088472745 212.4638251022334 L57.311872284973106 291.1363636363636 L60.14909368521967 252.75951557093424 L62.98631508546623 250.84067316766277 L65.82353648571188 215.3420887071406 L68.66075788595845 223.9768795218622 L71.4979792862041 212.4638251022334 L74.33520068645066 223.9768795218622 L77.17242208669722 229.7334067316766 L80.00964348694288 205.74787669078324 L82.84686488718944 208.62614029569045 L85.684086287436 213.42324630386912 L88.52130768768166 251.8000943692985 L91.35852908792822 240.2870399496697 L94.19575048817387 230.69282793331234 L97.03297188842043 229.7334067316766 L99.870193288667 235.48993394149102 L102.70741468891265 252.75951557093424 L105.54463608915921 231.65224913494808 L108.38185748940577 257.5566215791129 L111.21907888965143 216.30150990877632 L114.05630028989799 247.00298836111983 L116.89352169014364 184.64061025479708 L119.7307430903902 203.82903428751177 L122.56796449063677 206.70729789241898 L125.40518589088242 264.27256999056306 L128.24240729112898 261.39430638565585 L131.07962869137464 232.6116703365838 L133.9168500916212 222.05803711859073 L136.75407149186776 210.54498269896192 L139.59129289211342 226.8551431267694 L142.42851429235998 215.3420887071406 L145.26573569260654 200.95077068260457 L148.1029570928522 222.05803711859073 L150.94017849309876 159.69565901226798 L153.7773998933444 210.54498269896192 L156.61462129359097 191.35655866624722 L159.45184269383753 233.57109153821955 L162.2890640940832 221.098615916955 L165.12628549432975 194.23482227115443 L167.9635068945754 179.8435042466184 L170.80072829482197 212.4638251022334 L173.63794969506853 200.95077068260457 L176.47517109531418 178.88408304498267 L179.31239249556074 220.13919471531926 L182.1496138958073 175.04639823843974 L184.98683529605296 169.28987102862533 L187.82405669629952 193.2754010695187 L190.66127809654517 164.49276502044665 L193.49849949679174 157.7768166089965 L196.3357208970383 174.086977036804 L199.17294229728395 172.16813463353253 L202.01016369753052 144.34491978609623 L204.84738509777617 188.47829506134002 L207.68460649802273 182.7217678515256 L210.5218278982693 206.70729789241898 L213.35904929851495 186.55945265806855 L216.1962706987615 198.07250707769737 L219.03349209900807 212.4638251022334 L221.87071349925372 222.05803711859073 L224.7079348995003 167.37102862535386 L227.54515629974594 170.24929223026106 L230.3823776999925 191.35655866624722 L233.21959910023907 184.64061025479708 L236.05682050048472 210.54498269896192 L238.89404190073128 199.99134948096884 L241.73126330097693 152.0202893991821 L244.5684847012235 172.16813463353253 L247.40570610147006 169.28987102862533 L250.2429275017157 162.57392261717519 L253.08014890196227 175.04639823843974 L255.91737030220884 169.28987102862533 L258.7545917024545 191.35655866624722 L261.59181310270105 211.50440390059765 L264.4290345029467 199.99134948096884 L267.26625590319327 208.62614029569045 L270.10347730343983 203.82903428751177 L272.9406987036855 229.7334067316766 L275.77792010393205 173.12755583516827 L278.6151415041786 211.50440390059765 L281.45236290442426 228.77398553004087 L284.2895843046708 173.12755583516827 L287.1268057049165 210.54498269896192 L289.96402710516304 190.3971374646115 L292.8012485054096 199.99134948096884 L295.63846990565526 199.99134948096884 L298.4756913059018 182.7217678515256 L301.3129127061475 202.86961308587604 L304.15013410639403 152.97971060081784 L306.9873555066406 142.42607738282476 L309.82457690688625 172.16813463353253 L312.6617983071328 149.1420257942749 L315.4990197073794 175.04639823843974 L318.336241107625 210.54498269896192 L321.1734625078716 163.53334381881092 L324.01068390811724 164.49276502044665 L326.8479053083638 140.5072349795533 L329.68512670861037 161.61450141553945 L332.522348108856 147.22318339100343 L335.3595695091026 141.46665618118902 L338.19679090934824 149.1420257942749 L341.0340123095948 154.8985530040893 L343.87123370984136 174.086977036804 L346.708455110087 117.48112614029567 L349.5456765103336 155.85797420572504 L352.38289791058014 148.18260459263917 L355.2201193108258 121.31881094683861 L358.05734071107236 115.5622837370242 L360.894562111318 128.99418055992447 L363.7317835115646 149.1420257942749 L366.56900491181113 100.21154451085245 L369.4062263120568 128.99418055992447 L372.24344771230335 108.84633532557406 L375.080669112549 123.23765335011008 L377.91789051279557 112.68402013211698 L380.75511191304213 78.14485687323057 L383.5923333132878 136.66955017301035 L386.42955471353434 121.31881094683861 L389.2667761137809 112.68402013211698 L392.10399751402656 136.66955017301035 L394.9412189142731 123.23765335011008 L397.7784403145188 123.23765335011008 L400.61566171476534 108.84633532557406 L403.4528831150119 79.1042780748663 L406.29010451525755 29.2143755898081 L409.1273259155041 64.71296005033027 L411.96454731574977 70.46948726014467 L414.80176871599633 81.9825416797735 L417.6389901162429 40.727430009436915 L420.47621151648855 81.9825416797735 L423.3134329167351 76.2260144699591 L426.1506543169817 73.34775086505188 L428.9878757172273 15.782478766907815 " fill="none" stroke-width="2.2" stroke="rgb(152,78,163)" stroke-opacity="1.0">
+          </path>
+        </g>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) " clip-path="url(#ctmJc6a)" clip-bounds-jfx="[rect (0.0, 0.0), (449.4158697990005, 305.0)]">
+        <defs>
+          <clippath id="ctmJc6a">
+            <rect x="0.0" y="0.0" width="449.4158697990005" height="305.0">
+            </rect>
+          </clippath>
+        </defs>
+        <g transform="rotate(0.0 20.42799408177234 180.80292544825414 ) ">
+          <g transform="translate(20.42799408177234 185.00292544825413 ) ">
+            <text style="fill:#000000;font-size:14.0px;font-family:sans-serif;" fill-opacity="1.0" y="0.0">
+              <tspan>1951—1980 average</tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(35.01530667574961 305.0 ) ">
+        <g transform="translate(20.42799408177234 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1880</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(77.17242208669722 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1900</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(133.9168500916212 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1920</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(190.66127809654517 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1940</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(247.40570610147006 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1960</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(304.15013410639403 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1980</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(360.894562111318 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>2000</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(417.6389901162429 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>2020</tspan>
+            </text>
+          </g>
+        </g>
+        <line x1="0.0" y1="0.0" x2="449.4158697990005" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <g transform="translate(0.0 286.33925762818495 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>-1.0</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 238.36819754639822 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>-0.5</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 190.3971374646115 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.0</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 142.42607738282476 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.5</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 94.45501730103804 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>1.0</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 46.48395721925132 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>1.5</tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(64.51530667574961 16.8 ) ">
+      <text class="plot-title" y="0.0">
+        <tspan>Average annual temperature anomaly in</tspan>
+      </text>
+      <text class="plot-title" y="16.0">
+        <tspan>in the northern hemisphere (1880—2024)</tspan>
+      </text>
+    </g>
+    <g transform="translate(16.0 195.0 ) rotate(-90.0 ) ">
+      <text class="axis-title-y" y="0.0" text-anchor="middle">
+        <tspan>Annual temperature anomalies</tspan>
+      </text>
+    </g>
+    <g transform="translate(289.22324157524986 393.0 ) ">
+      <text class="axis-title-x" y="0.0" text-anchor="middle">
+        <tspan>Year</tspan>
+      </text>
+    </g>
+    <g transform="translate(520.4311764747501 127.75 ) ">
+      <rect x="5.0" y="5.0" height="124.5" width="69.56882352524988" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" fill="rgb(255,255,255)" fill-opacity="1.0">
+      </rect>
+      <g transform="translate(10.0 10.0 ) ">
+        <g transform="translate(0.0 12.0 ) ">
+          <text class="legend-title" y="0.0">
+            <tspan>Season</tspan>
+          </text>
+        </g>
+        <g transform="translate(0.0 22.5 ) ">
+          <g transform="">
+            <g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(255,255,255)" fill-opacity="1.0">
+              </rect>
+              <g transform="translate(1.0 1.0 ) ">
+                <g>
+                  <line x1="0.0" y1="10.5" x2="21.0" y2="10.5" stroke="rgb(228,26,28)" stroke-opacity="1.0" fill="rgb(255,255,255)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+                  </line>
+                </g>
+              </g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
+              </rect>
+            </g>
+            <g transform="translate(26.9903027277341 16.05 ) ">
+              <text class="legend-item" y="0.0">
+                <tspan>MAM</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 23.0 ) ">
+            <g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(255,255,255)" fill-opacity="1.0">
+              </rect>
+              <g transform="translate(1.0 1.0 ) ">
+                <g>
+                  <line x1="0.0" y1="10.5" x2="21.0" y2="10.5" stroke="rgb(55,126,184)" stroke-opacity="1.0" fill="rgb(255,255,255)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+                  </line>
+                </g>
+              </g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
+              </rect>
+            </g>
+            <g transform="translate(26.9903027277341 16.05 ) ">
+              <text class="legend-item" y="0.0">
+                <tspan>JJA</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 46.0 ) ">
+            <g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(255,255,255)" fill-opacity="1.0">
+              </rect>
+              <g transform="translate(1.0 1.0 ) ">
+                <g>
+                  <line x1="0.0" y1="10.5" x2="21.0" y2="10.5" stroke="rgb(77,175,74)" stroke-opacity="1.0" fill="rgb(255,255,255)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+                  </line>
+                </g>
+              </g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
+              </rect>
+            </g>
+            <g transform="translate(26.9903027277341 16.05 ) ">
+              <text class="legend-item" y="0.0">
+                <tspan>SON</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 69.0 ) ">
+            <g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke-width="0.0" fill="rgb(255,255,255)" fill-opacity="1.0">
+              </rect>
+              <g transform="translate(1.0 1.0 ) ">
+                <g>
+                  <line x1="0.0" y1="10.5" x2="21.0" y2="10.5" stroke="rgb(152,78,163)" stroke-opacity="1.0" fill="rgb(255,255,255)" fill-opacity="1.0" stroke-width="1.6500000000000001">
+                  </line>
+                </g>
+              </g>
+              <rect x="0.0" y="0.0" height="23.0" width="23.0" stroke="rgb(255,255,255)" stroke-opacity="1.0" stroke-width="1.0" fill-opacity="0.0">
+              </rect>
+            </g>
+            <g transform="translate(26.9903027277341 16.05 ) ">
+              <text class="legend-item" y="0.0">
+                <tspan>DJF</tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+  </g>
+  <g id="dqRYqYk">
+  </g>
+</svg>
+</div>
+</div></div>
+<div id="cell-35" class="cell markdown">
+<section id="演练1.8" class="level2">
+<h2 class="anchored" data-anchor-id="演练1.8">演练1.8</h2>
+</section>
+</div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [24]:</pre></div><div id="cell-36" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_co2 <span class="op">=</span> pd.read_excel(<span class="st">"data_co2.xlsx"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_co2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Month</th>
+<th data-quarto-table-cell-role="th">Monthly average</th>
+<th data-quarto-table-cell-role="th">Interpolated</th>
+<th data-quarto-table-cell-role="th">Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1958</td>
+<td>3</td>
+<td>315.71</td>
+<td>315.71</td>
+<td>314.62</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1958</td>
+<td>4</td>
+<td>317.45</td>
+<td>317.45</td>
+<td>315.29</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1958</td>
+<td>5</td>
+<td>317.50</td>
+<td>317.50</td>
+<td>314.71</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1958</td>
+<td>6</td>
+<td>-99.99</td>
+<td>317.10</td>
+<td>314.85</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1958</td>
+<td>7</td>
+<td>315.86</td>
+<td>315.86</td>
+<td>314.98</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [25]:</pre></div><div id="cell-37" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_co2_june <span class="op">=</span> df_co2.loc[df_co2[<span class="st">"Month"</span>] <span class="op">==</span> <span class="dv">6</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_co2_june.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Month</th>
+<th data-quarto-table-cell-role="th">Monthly average</th>
+<th data-quarto-table-cell-role="th">Interpolated</th>
+<th data-quarto-table-cell-role="th">Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1958</td>
+<td>6</td>
+<td>-99.99</td>
+<td>317.10</td>
+<td>314.85</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>1959</td>
+<td>6</td>
+<td>318.15</td>
+<td>318.15</td>
+<td>315.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">27</td>
+<td>1960</td>
+<td>6</td>
+<td>319.59</td>
+<td>319.59</td>
+<td>317.36</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">39</td>
+<td>1961</td>
+<td>6</td>
+<td>319.77</td>
+<td>319.77</td>
+<td>317.48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>1962</td>
+<td>6</td>
+<td>320.55</td>
+<td>320.55</td>
+<td>318.27</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [26]:</pre></div><div id="cell-38" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_temp_co2 <span class="op">=</span> pd.merge(df_co2_june, df, on<span class="op">=</span><span class="st">"Year"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df_temp_co2[[<span class="st">"Year"</span>, <span class="st">"Jun"</span>, <span class="st">"Trend"</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Jun</th>
+<th data-quarto-table-cell-role="th">Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1958</td>
+<td>0.05</td>
+<td>314.85</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1959</td>
+<td>0.14</td>
+<td>315.92</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1960</td>
+<td>0.18</td>
+<td>317.36</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1961</td>
+<td>0.18</td>
+<td>317.48</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1962</td>
+<td>-0.13</td>
+<td>318.27</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [27]:</pre></div><div id="cell-39" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    ggplot(df_temp_co2, aes(x<span class="op">=</span><span class="st">"Jun"</span>, y<span class="op">=</span><span class="st">"Trend"</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(color<span class="op">=</span><span class="st">"black"</span>, size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"Scatterplot of temperature anomalies vs carbon dioxide emissions"</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">"Carbon dioxide levels (trend, mole fraction)"</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">"Temperature anomaly (degrees Celsius)"</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="600.0" height="400.0">
+  <style type="text/css">
+  .plt-container {
+   font-family: Lucida Grande, sans-serif;
+   user-select: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+text {
+   text-rendering: optimizeLegibility;
+}
+#pbilzbl .plot-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 16.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .plot-subtitle {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .plot-caption {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .legend-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .legend-item {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .axis-title-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .axis-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dDTtazi .axis-tooltip-text-x {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .axis-title-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .axis-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dDTtazi .axis-tooltip-text-y {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .facet-strip-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pbilzbl .facet-strip-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dDTtazi .tooltip-text {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dDTtazi .tooltip-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+#dDTtazi .tooltip-label {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+
+  </style>
+  <g id="pbilzbl">
+    <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+    <g transform="translate(29.5 26.5 ) ">
+      <g transform="translate(29.941816366404606 0.0 ) ">
+        <line x1="24.275371983345252" y1="321.0" x2="24.275371983345252" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="97.28400952724073" y1="321.0" x2="97.28400952724073" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="170.2926470711362" y1="321.0" x2="170.2926470711362" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="243.30128461503168" y1="321.0" x2="243.30128461503168" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="316.3099221589272" y1="321.0" x2="316.3099221589272" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="389.31855970282265" y1="321.0" x2="389.31855970282265" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="462.32719724671813" y1="321.0" x2="462.32719724671813" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(29.941816366404606 0.0 ) ">
+        <line x1="0.0" y1="290.01659923845796" x2="534.0581836335954" y2="290.01659923845796" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="226.35643741075683" x2="534.0581836335954" y2="226.35643741075683" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="162.6962755830557" x2="534.0581836335954" y2="162.6962755830557" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="99.03611375535456" x2="534.0581836335954" y2="99.03611375535456" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="35.37595192765343" x2="534.0581836335954" y2="35.37595192765343" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(29.941816366404606 0.0 ) " clip-path="url(#cgH90s0)" clip-bounds-jfx="[rect (0.0, 0.0), (534.0581836335954, 321.0)]">
+        <defs>
+          <clippath id="cgH90s0">
+            <rect x="0.0" y="0.0" width="534.0581836335954" height="321.0">
+            </rect>
+          </clippath>
+        </defs>
+        <g>
+          <g>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="115.5361689132146" cy="306.4090909090909" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="148.39005580796757" cy="303.0032722513089" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="162.99178331674665" cy="298.4197405997144" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="162.99178331674665" cy="298.03777962874824" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="49.82839512370867" cy="295.5232032365541" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="82.68228201846163" cy="292.69032603522123" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="64.43012263248777" cy="291.00333174678724" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="24.275371983345252" cy="291.1306520704427" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="119.18660079040937" cy="285.17842693955265" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="75.38141826407208" cy="283.8415635411709" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="79.03185014126686" cy="279.83097334602576" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="82.68228201846163" cy="275.279271775345" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="104.58487328163028" cy="272.4463945740124" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="46.17796324651389" cy="269.64534745359356" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="60.77969075529299" cy="267.99018324607323" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="155.69091956235712" cy="258.3774988100904" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="31.576235737734805" cy="258.3774988100904" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="68.08055450968254" cy="254.36690861494526" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="24.275371983345252" cy="252.93455497382206" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="181.24394270272052" cy="246.09108757734407" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="46.17796324651389" cy="240.39350309376505" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="126.48746454479891" cy="236.41474297953368" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="166.6422151939414" cy="230.0487267967635" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="199.49610208869439" cy="226.13362684435992" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="100.9344414044355" cy="222.05937648738677" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="137.43876017638325" cy="216.32996192289397" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="130.13789642199367" cy="212.00107091861014" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="100.9344414044355" cy="207.44936934792963" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="148.39005580796757" cy="202.42021656354132" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="159.3413514395519" cy="197.0727629700143" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="243.30128461503168" cy="190.16563541170876" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="184.89437457991528" cy="185.07282246549244" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="272.50473963258986" cy="181.88981437410757" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="268.8543077553951" cy="176.06490956687276" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="111.88573703601982" cy="172.3407900999523" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="177.59351082552575" cy="171.86333888624472" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="246.95171649222644" cy="167.66176820561645" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="279.80560338697944" cy="160.0225487862922" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="188.54480645711007" cy="154.13398381722982" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="276.1551715097846" cy="151.84221799143256" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="363.76553656245915" cy="141.05182056163721" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="225.04912522905778" cy="136.81841980009517" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="257.90301212381075" cy="132.45769871489756" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="287.10646714136897" cy="127.71501665873393" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="345.5133771764854" cy="120.36226796763435" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="294.4073308957585" cy="111.67265587815336" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="268.8543077553951" cy="107.34376487386953" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="382.01769594843313" cy="99.41807472632081" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="392.9689915800175" cy="93.46584959543065" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="334.56208154490105" cy="86.81336268443602" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="323.6107859133167" cy="81.65688957639213" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="341.8629452992906" cy="75.99113517372666" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="403.9202872116017" cy="67.55616373155635" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="374.7168321940435" cy="62.6225011899096" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="440.42460598354944" cy="56.22465492622564" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="382.01769594843313" cy="47.21674202760596" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="392.9689915800175" cy="38.71811042360787" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="484.2297885098868" cy="33.816277962874665" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="509.7828116502501" cy="21.05241551642075" r="3.3000000000000003"></circle>
+            <circle fill="#000000" stroke="#000000" stroke-opacity="0.0" stroke-width="0.0" cx="436.77417410635474" cy="14.590909090909008" r="3.3000000000000003"></circle>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(29.941816366404606 321.0 ) ">
+        <g transform="translate(24.275371983345252 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>-0.2</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(97.28400952724073 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>0.0</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(170.2926470711362 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>0.2</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(243.30128461503168 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>0.4</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(316.3099221589272 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>0.6</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(389.31855970282265 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>0.8</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(462.32719724671813 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1.0</tspan>
+            </text>
+          </g>
+        </g>
+        <line x1="0.0" y1="0.0" x2="534.0581836335954" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+        </line>
+      </g>
+      <g transform="translate(29.941816366404606 0.0 ) ">
+        <g transform="translate(0.0 290.01659923845796 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>320</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 226.35643741075683 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>340</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 162.6962755830557 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>360</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 99.03611375535456 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>380</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 35.37595192765343 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>400</tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(59.44181636640461 16.8 ) ">
+      <text class="plot-title" y="0.0">
+        <tspan>Scatterplot of temperature anomalies vs carbon dioxide emissions</tspan>
+      </text>
+    </g>
+    <g transform="translate(16.0 187.0 ) rotate(-90.0 ) ">
+      <text class="axis-title-y" y="0.0" text-anchor="middle">
+        <tspan>Carbon dioxide levels (trend, mole fraction)</tspan>
+      </text>
+    </g>
+    <g transform="translate(326.4709081832023 393.0 ) ">
+      <text class="axis-title-x" y="0.0" text-anchor="middle">
+        <tspan>Temperature anomaly (degrees Celsius)</tspan>
+      </text>
+    </g>
+    <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+  </g>
+  <g id="dDTtazi">
+  </g>
+</svg>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [28]:</pre></div><div id="cell-40" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df_temp_co2[[<span class="st">"Jun"</span>, <span class="st">"Trend"</span>]].corr(method<span class="op">=</span><span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Jun</th>
+<th data-quarto-table-cell-role="th">Trend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Jun</td>
+<td>1.000000</td>
+<td>0.915419</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Trend</td>
+<td>0.915419</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [29]:</pre></div><div id="cell-41" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    ggplot(df_temp_co2, aes(x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Jun"</span>))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"June temperature anomalies"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">"d"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="600.0" height="400.0">
+  <style type="text/css">
+  .plt-container {
+   font-family: Lucida Grande, sans-serif;
+   user-select: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+text {
+   text-rendering: optimizeLegibility;
+}
+#p1Tlfts .plot-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 16.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .plot-subtitle {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .plot-caption {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .legend-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .legend-item {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .axis-title-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .axis-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#d7y9yWI .axis-tooltip-text-x {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .axis-title-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .axis-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#d7y9yWI .axis-tooltip-text-y {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .facet-strip-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#p1Tlfts .facet-strip-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#d7y9yWI .tooltip-text {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#d7y9yWI .tooltip-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+#d7y9yWI .tooltip-label {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+
+  </style>
+  <g id="p1Tlfts">
+    <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+    <g transform="translate(29.5 26.5 ) ">
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <line x1="40.3462901687999" y1="321.0" x2="40.3462901687999" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="121.85394707546402" y1="321.0" x2="121.85394707546402" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="203.36160398212814" y1="321.0" x2="203.36160398212814" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="284.86926088879227" y1="321.0" x2="284.86926088879227" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="366.3769177954564" y1="321.0" x2="366.3769177954564" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="447.8845747021205" y1="321.0" x2="447.8845747021205" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <line x1="0.0" y1="306.40909090909093" x2="528.9846933242497" y2="306.40909090909093" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="262.52665755297335" x2="528.9846933242497" y2="262.52665755297335" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="218.64422419685576" x2="528.9846933242497" y2="218.64422419685576" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="174.7617908407382" x2="528.9846933242497" y2="174.7617908407382" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="130.8793574846206" x2="528.9846933242497" y2="130.8793574846206" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="86.99692412850305" x2="528.9846933242497" y2="86.99692412850305" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+        <line x1="0.0" y1="43.114490772385494" x2="528.9846933242497" y2="43.114490772385494" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) " clip-path="url(#c7ZuK1B)" clip-bounds-jfx="[rect (0.0, 0.0), (528.9846933242504, 321.0)]">
+        <defs>
+          <clippath id="c7ZuK1B">
+            <rect x="0.0" y="0.0" width="528.9846933242504" height="321.0">
+            </rect>
+          </clippath>
+        </defs>
+        <g>
+          <path d="M24.04475878746598 251.55604921394396 L24.04475878746598 251.55604921394396 L32.19552447813294 231.80895420369103 L40.3462901687999 223.03246753246754 L48.497055859465036 223.03246753246754 L56.647821550131994 291.05023923444975 L64.79858724079895 271.30314422419684 L72.94935293146591 282.27375256322625 L81.10011862213105 306.40909090909093 L89.25088431279801 249.36192754613808 L97.40165000346497 275.6913875598086 L105.5524156941301 273.49726589200276 L113.70318138479706 271.30314422419684 L121.85394707546402 258.13841421736157 L130.00471276612916 293.24436090225566 L138.15547845679612 284.4678742310321 L146.30624414746308 227.42071086807928 L154.45700983812822 302.02084757347916 L162.60777552879517 280.0796308954204 L170.75854121946213 306.40909090909093 L178.9093069101291 212.06185919343812 L187.06007260079423 293.24436090225566 L195.2108382914612 244.97368421052633 L203.36160398212814 220.83834586466165 L211.51236967279328 201.09125085440874 L219.66313536346024 260.3325358851675 L227.8139010541272 238.3913192071087 L235.96466674479234 242.77956254272044 L244.1154324354593 260.3325358851675 L252.26619812612626 231.80895420369103 L260.4169638167932 225.2265892002734 L268.56772950745835 174.7617908407382 L276.7184951981253 209.86773752563226 L284.86926088879227 157.20881749829118 L293.0200265794574 159.40293916609704 L301.17079227012437 253.75017088174982 L309.3215579607913 214.255980861244 L317.47232365145646 172.5676691729323 L325.6230893421234 152.8205741626794 L333.7738550327904 207.67361585782638 L341.9246207234555 155.0146958304853 L350.0753864141225 102.35577580314421 L358.22615210478943 185.73239917976758 L366.3769177954564 165.98530416951468 L374.52768348612153 148.43233082706766 L382.6784491767885 113.3263841421736 L390.82921486745545 144.0440874914559 L398.9799805581206 159.40293916609704 L407.13074624878755 91.38516746411483 L415.2815119394545 84.80280246069717 L423.43227763011964 119.90874914559123 L431.5830433207866 126.49111414900887 L439.73380901145356 115.52050580997948 L447.8845747021205 78.22043745727956 L456.03534039278566 95.77341079972658 L464.1861060834508 56.279220779220765 L472.3368717741196 91.38516746411483 L480.4876374647847 84.80280246069717 L488.6384031554535 29.949760765550224 L496.7891688461186 14.590909090909093 L504.93993453678377 58.473342447026624 " fill="none" stroke-width="2.2" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+          </path>
+        </g>
+      </g>
+      <g transform="translate(35.01530667574961 321.0 ) ">
+        <g transform="translate(40.3462901687999 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1960</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(121.85394707546402 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1970</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(203.36160398212814 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1980</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(284.86926088879227 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>1990</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(366.3769177954564 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>2000</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(447.8845747021205 0.0 ) ">
+          <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+          </line>
+          <g transform="translate(0.0 7.0 ) ">
+            <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+              <tspan>2010</tspan>
+            </text>
+          </g>
+        </g>
+        <line x1="0.0" y1="0.0" x2="528.9846933242504" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+        </line>
+      </g>
+      <g transform="translate(35.01530667574961 0.0 ) ">
+        <g transform="translate(0.0 306.40909090909093 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>-0.2</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 262.52665755297335 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.0</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 218.64422419685576 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.2</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 174.7617908407382 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.4</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 130.8793574846206 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.6</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 86.99692412850305 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>0.8</tspan>
+            </text>
+          </g>
+        </g>
+        <g transform="translate(0.0 43.114490772385494 ) ">
+          <g transform="translate(-3.0 0.0 ) ">
+            <text class="axis-text-y" text-anchor="end" dy="0.35em">
+              <tspan>1.0</tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(64.51530667574961 16.8 ) ">
+      <text class="plot-title" y="0.0">
+        <tspan>June temperature anomalies</tspan>
+      </text>
+    </g>
+    <g transform="translate(16.0 187.0 ) rotate(-90.0 ) ">
+      <text class="axis-title-y" y="0.0" text-anchor="middle">
+        <tspan>Jun</tspan>
+      </text>
+    </g>
+    <g transform="translate(329.00765333787484 393.0 ) ">
+      <text class="axis-title-x" y="0.0" text-anchor="middle">
+        <tspan>Year</tspan>
+      </text>
+    </g>
+    <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 400.0 L600.0 400.0 L600.0 0.0 Z">
+    </path>
+  </g>
+  <g id="d7y9yWI">
+  </g>
+</svg>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [30]:</pre></div><div id="cell-42" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>base_plot <span class="op">=</span> ggplot(df_temp_co2) <span class="op">+</span> scale_x_continuous(<span class="bu">format</span><span class="op">=</span><span class="st">"d"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plot_p <span class="op">=</span> (</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    base_plot</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Jun"</span>), size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(title<span class="op">=</span><span class="st">"June temperature anomalies"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>plot_q <span class="op">=</span> (</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    base_plot</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_line(aes(x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Trend"</span>), size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(title<span class="op">=</span><span class="st">"Carbon dioxide emissions"</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>gggrid([plot_p, plot_q], ncol<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="900.0" height="400.0">
+  <g id="pQmCtE0">
+    <rect x="0.0" y="0.0" height="400.0" width="900.0" fill="rgb(255,255,255)" fill-opacity="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0">
+    </rect>
+  </g>
+  <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="448.0" height="400.0" x="0.0" y="0.0">
+    <style type="text/css">
+    .plt-container {
+   font-family: Lucida Grande, sans-serif;
+   user-select: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+text {
+   text-rendering: optimizeLegibility;
+}
+#pPWrXJP .plot-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 16.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .plot-subtitle {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .plot-caption {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .legend-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .legend-item {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .axis-title-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .axis-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dTYyMRn .axis-tooltip-text-x {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .axis-title-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .axis-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dTYyMRn .axis-tooltip-text-y {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .facet-strip-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pPWrXJP .facet-strip-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dTYyMRn .tooltip-text {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#dTYyMRn .tooltip-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+#dTYyMRn .tooltip-label {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+
+    </style>
+    <g id="pPWrXJP">
+      <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 400.0 L448.0 400.0 L448.0 0.0 Z">
+      </path>
+      <g transform="translate(29.5 26.5 ) ">
+        <g transform="translate(35.01530667574961 0.0 ) ">
+          <line x1="28.753069829816013" y1="321.0" x2="28.753069829816013" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="86.84007958701841" y1="321.0" x2="86.84007958701841" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="144.92708934422262" y1="321.0" x2="144.92708934422262" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="203.01409910142502" y1="321.0" x2="203.01409910142502" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="261.10110885862923" y1="321.0" x2="261.10110885862923" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="319.1881186158316" y1="321.0" x2="319.1881186158316" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+        </g>
+        <g transform="translate(35.01530667574961 0.0 ) ">
+          <line x1="0.0" y1="306.40909090909093" x2="376.98469332424975" y2="306.40909090909093" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="262.52665755297335" x2="376.98469332424975" y2="262.52665755297335" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="218.64422419685576" x2="376.98469332424975" y2="218.64422419685576" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="174.7617908407382" x2="376.98469332424975" y2="174.7617908407382" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="130.8793574846206" x2="376.98469332424975" y2="130.8793574846206" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="86.99692412850305" x2="376.98469332424975" y2="86.99692412850305" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="43.114490772385494" x2="376.98469332424975" y2="43.114490772385494" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+        </g>
+        <g transform="translate(35.01530667574961 0.0 ) " clip-path="url(#cJkbGKy)" clip-bounds-jfx="[rect (0.0, 0.0), (376.9846933242504, 321.0)]">
+          <defs>
+            <clippath id="cJkbGKy">
+              <rect x="0.0" y="0.0" width="376.9846933242504" height="321.0">
+              </rect>
+            </clippath>
+          </defs>
+          <g>
+            <path d="M17.13566787837408 251.55604921394396 L17.13566787837408 251.55604921394396 L22.944368854094137 231.80895420369103 L28.753069829816013 223.03246753246754 L34.56177080553607 223.03246753246754 L40.37047178125613 291.05023923444975 L46.179172756976186 271.30314422419684 L51.987873732696244 282.27375256322625 L57.7965747084163 306.40909090909093 L63.60527568413636 249.36192754613808 L69.41397665985824 275.6913875598086 L75.2226776355783 273.49726589200276 L81.03137861129835 271.30314422419684 L86.84007958701841 258.13841421736157 L92.64878056273847 293.24436090225566 L98.45748153845852 284.4678742310321 L104.2661825141804 227.42071086807928 L110.07488348990046 302.02084757347916 L115.88358446562052 280.0796308954204 L121.69228544134057 306.40909090909093 L127.50098641706063 212.06185919343812 L133.3096873927807 293.24436090225566 L139.11838836850075 244.97368421052633 L144.92708934422262 220.83834586466165 L150.73579031994268 201.09125085440874 L156.54449129566274 260.3325358851675 L162.3531922713828 238.3913192071087 L168.16189324710285 242.77956254272044 L173.9705942228229 260.3325358851675 L179.77929519854297 231.80895420369103 L185.58799617426484 225.2265892002734 L191.3966971499849 174.7617908407382 L197.20539812570496 209.86773752563226 L203.01409910142502 157.20881749829118 L208.82280007714508 159.40293916609704 L214.63150105286513 253.75017088174982 L220.440202028587 214.255980861244 L226.24890300430707 172.5676691729323 L232.05760398002712 152.8205741626794 L237.86630495574718 207.67361585782638 L243.67500593146724 155.0146958304853 L249.4837069071873 102.35577580314421 L255.29240788290736 185.73239917976758 L261.10110885862923 165.98530416951468 L266.9098098343493 148.43233082706766 L272.71851081006935 113.3263841421736 L278.5272117857894 144.0440874914559 L284.33591276150946 159.40293916609704 L290.1446137372295 91.38516746411483 L295.9533147129514 84.80280246069717 L301.76201568867145 119.90874914559123 L307.5707166643915 126.49111414900887 L313.37941764011157 115.52050580997948 L319.1881186158316 78.22043745727956 L324.9968195915517 95.77341079972658 L330.80552056727174 56.279220779220765 L336.6142215429936 91.38516746411483 L342.4229225187137 84.80280246069717 L348.23162349443373 29.949760765550224 L354.0403244701538 14.590909090909093 L359.84902544587385 58.473342447026624 " fill="none" stroke-width="2.2" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+            </path>
+          </g>
+        </g>
+        <g transform="translate(35.01530667574961 321.0 ) ">
+          <g transform="translate(28.753069829816013 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1960</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(86.84007958701841 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1970</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(144.92708934422262 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1980</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(203.01409910142502 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1990</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(261.10110885862923 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>2000</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(319.1881186158316 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>2010</tspan>
+              </text>
+            </g>
+          </g>
+          <line x1="0.0" y1="0.0" x2="376.9846933242504" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+          </line>
+        </g>
+        <g transform="translate(35.01530667574961 0.0 ) ">
+          <g transform="translate(0.0 306.40909090909093 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>-0.2</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 262.52665755297335 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0.0</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 218.64422419685576 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0.2</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 174.7617908407382 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0.4</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 130.8793574846206 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0.6</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 86.99692412850305 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>0.8</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 43.114490772385494 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>1.0</tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(64.51530667574961 16.8 ) ">
+        <text class="plot-title" y="0.0">
+          <tspan>June temperature anomalies</tspan>
+        </text>
+      </g>
+      <g transform="translate(16.0 187.0 ) rotate(-90.0 ) ">
+        <text class="axis-title-y" y="0.0" text-anchor="middle">
+          <tspan>Jun</tspan>
+        </text>
+      </g>
+      <g transform="translate(253.00765333787479 393.0 ) ">
+        <text class="axis-title-x" y="0.0" text-anchor="middle">
+          <tspan>Year</tspan>
+        </text>
+      </g>
+      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 400.0 L448.0 400.0 L448.0 0.0 Z">
+      </path>
+    </g>
+    <g id="dTYyMRn">
+    </g>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" class="plt-container" width="448.0" height="400.0" x="452.0" y="0.0">
+    <style type="text/css">
+    .plt-container {
+   font-family: Lucida Grande, sans-serif;
+   user-select: none;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+}
+text {
+   text-rendering: optimizeLegibility;
+}
+#pMwMKyF .plot-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 16.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .plot-subtitle {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .plot-caption {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .legend-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .legend-item {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .axis-title-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .axis-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#djnE8VW .axis-tooltip-text-x {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .axis-title-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 15.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .axis-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#djnE8VW .axis-tooltip-text-y {
+   fill: #ffffff;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .facet-strip-text-x {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#pMwMKyF .facet-strip-text-y {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#djnE8VW .tooltip-text {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: normal;
+   font-style: normal;   
+}
+#djnE8VW .tooltip-title {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+#djnE8VW .tooltip-label {
+   fill: #474747;
+   font-family: Lucida Grande, sans-serif;
+   font-size: 13.0px;
+   font-weight: bold;
+   font-style: normal;   
+}
+
+    </style>
+    <g id="pMwMKyF">
+      <path fill-rule="evenodd" fill="rgb(255,255,255)" fill-opacity="1.0" d="M0.0 0.0 L0.0 400.0 L448.0 400.0 L448.0 0.0 Z">
+      </path>
+      <g transform="translate(29.5 26.5 ) ">
+        <g transform="translate(29.941816366404606 0.0 ) ">
+          <line x1="29.14003095510634" y1="321.0" x2="29.14003095510634" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="88.00878035935784" y1="321.0" x2="88.00878035935784" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="146.87752976360935" y1="321.0" x2="146.87752976360935" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="205.74627916786085" y1="321.0" x2="205.74627916786085" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="264.61502857211417" y1="321.0" x2="264.61502857211417" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="323.4837779763657" y1="321.0" x2="323.4837779763657" y2="0.0" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+        </g>
+        <g transform="translate(29.941816366404606 0.0 ) ">
+          <line x1="0.0" y1="290.01659923845796" x2="382.05818363359685" y2="290.01659923845796" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="226.35643741075683" x2="382.05818363359685" y2="226.35643741075683" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="162.6962755830557" x2="382.05818363359685" y2="162.6962755830557" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="99.03611375535456" x2="382.05818363359685" y2="99.03611375535456" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+          <line x1="0.0" y1="35.37595192765343" x2="382.05818363359685" y2="35.37595192765343" stroke="rgb(233,233,233)" stroke-opacity="1.0" stroke-width="1.0" fill="none">
+          </line>
+        </g>
+        <g transform="translate(29.941816366404606 0.0 ) " clip-path="url(#cfe48J1)" clip-bounds-jfx="[rect (0.0, 0.0), (382.0581836335954, 321.0)]">
+          <defs>
+            <clippath id="cfe48J1">
+              <rect x="0.0" y="0.0" width="382.0581836335954" height="321.0">
+              </rect>
+            </clippath>
+          </defs>
+          <g>
+            <path d="M17.366281074255312 306.4090909090909 L17.366281074255312 306.4090909090909 L23.253156014679917 303.0032722513089 L29.14003095510634 298.4197405997144 L35.026905895530945 298.03777962874824 L40.91378083595555 295.5232032365541 L46.80065577638197 292.69032603522123 L52.68753071680658 291.00333174678724 L58.57440565723118 291.1306520704427 L64.4612805976576 285.17842693955265 L70.34815553808221 283.8415635411709 L76.23503047850681 279.83097334602576 L82.12190541893324 275.279271775345 L88.00878035935784 272.4463945740124 L93.89565529978245 269.64534745359356 L99.78253024020887 267.99018324607323 L105.66940518063348 258.3774988100904 L111.55628012105808 258.3774988100904 L117.4431550614845 254.36690861494526 L123.33003000190911 252.93455497382206 L129.2169049423337 246.09108757734407 L135.10377988275832 240.39350309376505 L140.99065482318474 236.41474297953368 L146.87752976360935 230.0487267967635 L152.76440470403395 226.13362684435992 L158.65127964446037 222.05937648738677 L164.53815458488498 216.32996192289397 L170.42502952530958 212.00107091861014 L176.311904465736 207.44936934792963 L182.1987794061606 202.42021656354132 L188.08565434658522 197.0727629700143 L193.97252928701164 190.16563541170876 L199.85940422743624 185.07282246549244 L205.74627916786085 181.88981437410757 L211.63315410828727 176.06490956687276 L217.52002904871188 172.3407900999523 L223.40690398913648 171.86333888624472 L229.2937789295629 167.66176820561645 L235.1806538699875 160.0225487862922 L241.0675288104121 154.13398381722982 L246.95440375083854 151.84221799143256 L252.84127869126314 141.05182056163721 L258.72815363168775 136.81841980009517 L264.61502857211417 132.45769871489756 L270.5019035125388 127.71501665873393 L276.3887784529634 120.36226796763435 L282.2756533933898 111.67265587815336 L288.1625283338144 107.34376487386953 L294.049403274239 99.41807472632081 L299.9362782146636 93.46584959543065 L305.82315315509004 86.81336268443602 L311.71002809551464 81.65688957639213 L317.59690303593925 75.99113517372666 L323.4837779763657 67.55616373155635 L329.3706529167903 62.6225011899096 L335.2575278572149 56.22465492622564 L341.1444027976413 47.21674202760596 L347.0312777380659 38.71811042360787 L352.9181526784905 33.816277962874665 L358.80502761891694 21.05241551642075 L364.69190255934154 14.590909090909008 " fill="none" stroke-width="2.2" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+            </path>
+          </g>
+        </g>
+        <g transform="translate(29.941816366404606 321.0 ) ">
+          <g transform="translate(29.14003095510634 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1960</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(88.00878035935784 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1970</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(146.87752976360935 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1980</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(205.74627916786085 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>1990</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(264.61502857211417 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>2000</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(323.4837779763657 0.0 ) ">
+            <line stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" x2="0.0" y2="4.0">
+            </line>
+            <g transform="translate(0.0 7.0 ) ">
+              <text class="axis-text-x" text-anchor="middle" dy="0.7em">
+                <tspan>2010</tspan>
+              </text>
+            </g>
+          </g>
+          <line x1="0.0" y1="0.0" x2="382.0581836335954" y2="0.0" stroke-width="1.0" stroke="rgb(71,71,71)" stroke-opacity="1.0">
+          </line>
+        </g>
+        <g transform="translate(29.941816366404606 0.0 ) ">
+          <g transform="translate(0.0 290.01659923845796 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>320</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 226.35643741075683 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>340</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 162.6962755830557 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>360</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 99.03611375535456 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>380</tspan>
+              </text>
+            </g>
+          </g>
+          <g transform="translate(0.0 35.37595192765343 ) ">
+            <g transform="translate(-3.0 0.0 ) ">
+              <text class="axis-text-y" text-anchor="end" dy="0.35em">
+                <tspan>400</tspan>
+              </text>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g transform="translate(59.44181636640461 16.8 ) ">
+        <text class="plot-title" y="0.0">
+          <tspan>Carbon dioxide emissions</tspan>
+        </text>
+      </g>
+      <g transform="translate(16.0 187.0 ) rotate(-90.0 ) ">
+        <text class="axis-title-y" y="0.0" text-anchor="middle">
+          <tspan>Trend</tspan>
+        </text>
+      </g>
+      <g transform="translate(250.4709081832023 393.0 ) ">
+        <text class="axis-title-x" y="0.0" text-anchor="middle">
+          <tspan>Year</tspan>
+        </text>
+      </g>
+      <path fill="rgb(0,0,0)" fill-opacity="0.0" stroke="rgb(71,71,71)" stroke-opacity="1.0" stroke-width="0.0" d="M0.0 0.0 L0.0 400.0 L448.0 400.0 L448.0 0.0 Z">
+      </path>
+    </g>
+    <g id="djnE8VW">
+    </g>
+  </svg>
+</svg>
+</div>
+</div></div>
+<div id="cell-43" class="cell markdown">
+<p>从上述图标可以看出，年份与CO_2的关系呈正相关关系，同时业余气温变化呈正相关关系，而且从它们的变化曲线可以看出均呈指数型增长，因此气温变化异常与二氧化碳有关系。</p>
+</div>
+
+
+     </main> <!-- /main -->  <script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>  </div> <!-- /content --> 
+  
+</body></html>
